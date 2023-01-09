@@ -5,6 +5,7 @@ const expresslayouts=require(`express-ejs-layouts`); //to use layouts
 const app=express();
 const port=27017;
 
+app.use(express.static(`./assets`));// to enable assets
 app.set(`view engine`,`ejs`);
 app.set(`views`,`./views`);  // setting up view engine
 
