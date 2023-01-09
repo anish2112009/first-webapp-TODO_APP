@@ -1,7 +1,7 @@
 const mongoose =require(`mongoose`);
 mongoose.set("strictQuery", false);
 
-mongoose.connect(`mongodb://127.0.0.1/codeial_development`);
+mongoose.connect(`mongodb://127.0.0.1/TODO_APP`);
 
 const db=mongoose.connection;
 

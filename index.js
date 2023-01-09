@@ -13,6 +13,7 @@ app.set(`views`,`./views`);  // setting up view engine
 
 
 app.use(expresslayouts);
+app.use(express.urlencoded({extended: true}));
 
 app.set(`layout extractStyles`,true); // this will allow layout to automatically put the css files within its head for which this layout is called
 app.set(`layout extractScript`,true); // this is for javascript
