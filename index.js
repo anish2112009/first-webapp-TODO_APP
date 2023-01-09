@@ -1,5 +1,6 @@
 const express=require(`express`);
 const expresslayouts=require(`express-ejs-layouts`); //to use layouts
+const db=require(`./config/mongoose`);
 
 
 const app=express();
