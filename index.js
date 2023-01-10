@@ -2,6 +2,8 @@ const express=require(`express`);
 const expresslayouts=require(`express-ejs-layouts`); //to use layouts
 const db=require(`./config/mongoose`);
 const session=require(`express-session`);
+const passport = require('passport');
+const passportLocal = require('./config/passport-local-strategy');
 const MongoStore=require(`connect-mongo`);
 
 
@@ -29,9 +31,15 @@ app.use(session({
     resave: false,                                                         // yha se wapas routes m chal jaenge 
     cookie: {
         maxAge: (1000 * 60 *100)                 // duration of cookie in ms
-    }
-   // store: MongoStore.create({ mongoUrl: 'mongodb://127.0.0.1/TODO_APP' })   // to store login sessions in database
+    },
+    store: MongoStore.create({ mongoUrl: 'mongodb://127.0.0.1/TODO_APP' })   // to store login sessions in database
 }));
+
+app.use(passport.initialize());       
+app.use(passport.session());
+
+app.use(passport.setAuthenticatedUser);
+
 
 app.set(`layout extractStyles`,true); // this will allow layout to automatically put the css files within its head for which this layout is called
 app.set(`layout extractScript`,true); // this is for javascript
