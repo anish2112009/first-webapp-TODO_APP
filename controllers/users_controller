@@ -16,10 +16,13 @@ module.exports.create_user=async (req,res)=>{
 try {
     
     if(req.body.password!=req.body.c_password){
+        
+        req.flash(`error`,`Password not matches`);  
         return res.redirect(`back`);
     }
     let user=await User.findOne({email:req.body.email});
     if(user){
+        req.flash(`error`,`user already exist`);
         return res.redirect(`back`);
     }
 
@@ -28,7 +31,8 @@ try {
         email:req.body.email,
         password:req.body.email
     });
-    
+      
+    req.flash(`success`,`Account created successfully`);
     res.redirect(`/users/signin`);
     
 } catch (error) {
