@@ -1,4 +1,4 @@
 module.exports.home=function(req,res){
 
-    return res.render(`signup`);
+    return res.render(`home`);
 }
