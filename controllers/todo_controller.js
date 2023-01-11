@@ -4,9 +4,9 @@ const User=require(`../models/user`);
 
 module.exports.home=async (req,res)=>{
          
-    console.log(`hello`);
+    
           try {
-            console.log(`hello`);
+            
             let user=await User.findById(req.user._id).populate(`tasks`);
             return res.render(`todohome`,{
                 tasks:user.tasks
@@ -64,4 +64,16 @@ module.exports.delete_task=async (req,res)=>{
             console.log(`err in deleting a task`,error);
         }
     }
+}
+
+module.exports.toggle_check=async (req,res)=>{
+    
+    let task=await Task.findById(req.body.taskid);
+    task.checked=!task.checked;
+    task.save();
+   // console.log(task.checked);
+    res.status(200).json({
+        message:`done`,
+        data:{checked:task.checked}  //no need to send data to ajax aage use nhi kiye hai
+    })
 }

@@ -49,7 +49,7 @@
 
            <%for(task of tasks){%>
                 <li>
-                <input type="checkbox" id="<%=task._id%>" class="custom-checkbox">
+                <input type="checkbox" id="<%=task._id%>" class="custom-checkbox"  <%if(task.checked){%>checked<%}%>>
                 <label for="<%=task._id%>"><%=task.description%></br>&emsp;&emsp;&ensp;<span><%=task.dueDate.toDateString()%>&ensp;|&nbsp;<%=task.category%></span></label>
                 <a href="/users/delete_task/?taskid=<%=task._id%>"><img src="/images/delete.png" class="delete" data-id="12" /></a>
             </li>
@@ -60,3 +60,5 @@
     </div>
 
 </div>
+
+<script src="/javascript/checkbox.js"></script>

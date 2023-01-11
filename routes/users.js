@@ -19,3 +19,4 @@ router.get(`/todohome`,passport.checkAuthentication,todoController.home);
 router.get(`/signout`,userController.delete_session);
 router.post(`/addtask`,todoController.add_task);
 router.get(`/delete_task`,todoController.delete_task);
+router.post(`/toggle_check`,todoController.toggle_check)
