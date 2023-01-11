@@ -8,6 +8,22 @@ module.exports.home=async (req,res)=>{
           try {
             
             let user=await User.findById(req.user._id).populate(`tasks`);
+           user.tasks.sort((t1,t2)=>{
+            let date1 = new Date(t1.dueDate).getTime();
+            let date2 = new Date(t2.dueDate).getTime();
+            
+             
+            return date1-date2;
+           /* if(date1>=date2){
+                return t1>t2;
+            }
+            else{
+                return t1<t2;
+            }*/
+          
+
+           });
+           
             return res.render(`todohome`,{
                 tasks:user.tasks
             });
